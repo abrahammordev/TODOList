@@ -50,7 +50,7 @@ El registro de un nuevo usuario se maneja en el archivo `Register.tsx`. El formu
    
 ## ¡Visítala! 
 
-https://todo-list-3-jhn0yehoo-abrahammordevs-projects.vercel.app/
+### [¡Haz clic aquí para ver la aplicación! 🌐](https://todo-list-nine-taupe.vercel.app/)
 
 ## Contribuyendo 🤝
 Siéntete libre de contribuir a este proyecto abriendo issues y enviando pull requests. ¡Todas las contribuciones son bienvenidas!

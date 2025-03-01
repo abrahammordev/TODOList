@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Task, useTasks, TaskPriority } from '../context/TaskContext';
+import { useAuth } from '../context/AuthContext';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
@@ -13,6 +14,7 @@ interface EditTaskFormProps {
 
 const EditTaskForm: React.FC<EditTaskFormProps> = ({ task, onClose }) => {
     const { updateTask, loading } = useTasks();
+    const { user } = useAuth();
     const [formData, setFormData] = useState({
         name: task.name,
         priority: task.priority,
@@ -21,13 +23,13 @@ const EditTaskForm: React.FC<EditTaskFormProps> = ({ task, onClose }) => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!formData.name.trim()) return;
+        if (!formData.name.trim() || !user) return;
 
         try {
-            await updateTask('currentUserId', task.id, formData);
+            await updateTask(user.uid, task.id, formData);
             onClose();
         } catch (error) {
-            console.error(error);
+            console.error('Error al actualizar la tarea:', error);
         }
     };
 
@@ -95,7 +97,7 @@ const EditTaskForm: React.FC<EditTaskFormProps> = ({ task, onClose }) => {
                         </Button>
                         <Button
                             type="submit"
-                            disabled={loading || !formData.name.trim()}
+                            disabled={loading || !formData.name.trim() || !user}
                             className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800"
                         >
                             {loading ? (

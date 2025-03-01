@@ -124,9 +124,8 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
         setLoading(true);
         try {
             await updateTaskForUser(userId, taskId, taskData);
-            setTasks(prev => prev.map(task =>
-                task.id === taskId ? { ...task, ...taskData } : task
-            ));
+            // Fetch all tasks to ensure we have the latest state
+            await getTasks(userId);
         } catch (error) {
             handleError(error);
         } finally {
@@ -138,7 +137,8 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
         setLoading(true);
         try {
             await deleteTaskForUser(userId, taskId);
-            setTasks(prev => prev.filter(task => task.id !== taskId));
+            // Fetch all tasks to ensure we have the latest state
+            await getTasks(userId);
         } catch (error) {
             handleError(error);
         } finally {
@@ -154,9 +154,8 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
 
             const newStatus = task.status === 'pendiente' ? 'completada' : 'pendiente';
             await updateTaskForUser(userId, taskId, { status: newStatus });
-            setTasks(prev => prev.map(t =>
-                t.id === taskId ? { ...t, status: newStatus } : t
-            ));
+            // Fetch all tasks to ensure we have the latest state
+            await getTasks(userId);
         } catch (error) {
             handleError(error);
         } finally {

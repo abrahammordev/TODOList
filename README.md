@@ -10,7 +10,7 @@
 ## Configuración del Entorno 🖥️
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-repo/proyecto.git
+   git clone https://github.com/abrahammordev/TODOList.git
    ```
 2. Navega al directorio del proyecto:
    ```bash
@@ -26,20 +26,20 @@
    ```
 
 ## Operación de Fetch 🌐
-El proyecto utiliza la API Fetch para recuperar datos del backend. La operación de fetch se implementa en el archivo `firebaseService.ts`, que maneja la comunicación con Firebase para realizar operaciones CRUD.
+El proyecto utiliza la API Fetch para recuperar datos del backend. La operación de fetch se implementa en el archivo `firebase.ts`, que maneja la comunicación con Firebase para realizar operaciones CRUD.
 
 ## Clase Task 📋
-La clase `Task` representa una tarea en la aplicación. Incluye propiedades como `id`, `title`, `description`, `status` y `dueDate`. La clase proporciona métodos para crear, actualizar y eliminar tareas, asegurando que la funcionalidad de gestión de tareas sea robusta y eficiente.
+La clase `TaskContext` representa una tarea en la aplicación. Incluye propiedades como `id`, `name`, `priority`, `date` y `status`. La clase proporciona métodos para crear, actualizar y eliminar tareas, asegurando que la funcionalidad de gestión de tareas sea robusta y eficiente.
 
 ## Autenticación de Perfiles 🔐
 La autenticación de usuarios se maneja utilizando Firebase Authentication. Los usuarios pueden registrarse, iniciar sesión y cerrar sesión. La autenticación se implementa en el archivo `AuthContext.tsx`, que proporciona el contexto de autenticación a toda la aplicación.
 
 ## Registro de Nuevo Usuario 📝
-El registro de un nuevo usuario se maneja en el archivo `Register.tsx`. El formulario de registro incluye campos para el correo electrónico, la contraseña y la confirmación de la contraseña. Al enviar el formulario, se valida que las contraseñas coincidan y luego se llama a la función `register` del contexto de autenticación para crear una nueva cuenta en Firebase. Si el registro es exitoso, el usuario es redirigido al panel de control.
+El registro de un nuevo usuario se maneja en el archivo `Register.tsx`. El formulario de registro incluye campos para el correo electrónico, la contraseña y la confirmación de la contraseña. Al enviar el formulario, se valida que las contraseñas coincidan y luego se llama a la función `register` del contexto de autenticación para crear una nueva cuenta en Firebase (esta guarda la contraseña de forma cifrada y la creación de tareas se asocia al usuario). Si el registro es exitoso, el usuario es redirigido al panel de control.
 
 ## Funcionalidades Principales 📝
 - **Registro y Autenticación**: Los usuarios pueden registrarse y autenticarse utilizando Firebase.
-- **Gestión de Tareas**: Crear, editar, eliminar y visualizar tareas.
+- **Gestión de Tareas**: Crear, editar, eliminar , marcar como completadas y visualizar tareas.
 - **Rutas Protegidas**: Acceso a rutas protegidas basado en el estado de autenticación del usuario.
 - **Temas**: Soporte para temas utilizando `ThemeProvider`.
 
